@@ -152,7 +152,7 @@ const populateSearchBy = function(){
             node = document.createElement("OPTION");
             node.innerHTML = "Title";
             searchBy.appendChild(node);
-            document.getElementById("results").disabled = true;
+            document.getElementById("results").disabled = false;
     }
 }
 
