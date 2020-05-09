@@ -10,21 +10,28 @@
 
     font-family: Times New Roman, serif;
     font-size: 32px;
+    color: black;
 }
 
 .subtitle{
 
     font-family: Times New Roman, serif;
     font-size: 20px;
+    color: black;
 }
 
 body{
     background-image: url("items.png");
+    color: black;
 }
 
 h1{
 	display: block;
 	text-align: center;
+}
+#test-output{
+    display: block;
+    text-align: center;
 }
 
 button{
@@ -40,6 +47,7 @@ button{
     align-items: center;
     justify-content: center;
 }
+
 
 #option1, #option2{
     width: 150px;

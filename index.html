@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <title>CS 665 Project</title>
         <link rel="stylesheet" type="text/css" href="index.css">
+        <script type="text/javascript" src=./index.js></script>
     </head>
     <body>
         <div class="header">
@@ -12,19 +13,55 @@
         </div>
         <h1>Search</h1>
             <div class="search">
-                <select id="option1" name="selectItem" onchange="update()">
+                <select id="searchFor" name="selectItem" onchange="populateSearchBy()">
                     <option value="Books">Books</option>
                     <option value="Movie">Movie</option>
-                    <option value="Albulm">Albulm</option>
+                    <option value="Album">Album</option>
                     <option value="All">All Three</option>
                     <option value="Card">Library Card</option>
                 </select>
-                <select id="option2" name="selectGenre" onchange="update()">
+                <select id="searchBy" name="selectGenre">
+                    <option value="Title">Title</option>
+                    <option value="ISBN">ISBN</option>
+                    <option value="Author">Author</option>"
                 </select>
             </div>
-        <center><button onclick="">Results</button></center>
-        <div class="resultsbox">
-            <input type="text" id="results" placeholder="Results" onclick="">
+        
+        <div class="searchBox">
+            <input type="text" id="results" placeholder="type search here..." oninput="testBooks()">
+            <table id="books">
+                <caption>Books</caption>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>ISBN</th>
+                    </tr>
+                </thead>
+            </table>
+            <table id="movies">
+                <caption>Movies</caption>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Year</th>
+                        <th>Star</th>
+                        <th>Genre</th>                    
+                    </tr>
+                </thead>
+            </table>
+            <table id="albums">
+                <caption>Albums</caption>
+                <thead>
+                    <tr>    
+                        <th>Title</th>
+                        <th>Artist</th>
+                        <th>Release Date</th>
+                        <th>Genre</th>
+                    </tr>
+                </thead>
+            </table>
+            
         </div>
     </body>
 </html>
