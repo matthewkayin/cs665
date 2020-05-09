@@ -74,6 +74,7 @@ const populateSearchBy = function(){
 
     switch (searchingFor){
         case "Books":{
+            document.getElementById("results").disabled = false;
             for (let i = 0; i < bookAttributes.length; i++){
                 node = document.createElement("OPTION");
                 textnode = document.createTextNode(bookAttributes[i]);
@@ -83,6 +84,7 @@ const populateSearchBy = function(){
             break;
         }
         case "Movie":{
+            document.getElementById("results").disabled = false;
             for (let i = 0; i < movieAttributes.length; i++){
                 node = document.createElement("OPTION");
                 textnode = document.createTextNode(movieAttributes[i]);
@@ -92,6 +94,7 @@ const populateSearchBy = function(){
             break;
         }
         case "Album":{
+            document.getElementById("results").disabled = false;
             for (let i = 0; i < albumAttributes.length; i++){
                 node = document.createElement("OPTION");
                 textnode = document.createTextNode(albumAttributes[i]);
@@ -101,6 +104,7 @@ const populateSearchBy = function(){
             break;
         }
         case "Card":{
+            document.getElementById("results").disabled = false;
             for (let i = 0; i < cardAttributes.length; i++){
                 node = document.createElement("OPTION");
                 textnode = document.createTextNode(cardAttributes[i]);
@@ -114,7 +118,7 @@ const populateSearchBy = function(){
             textnode = document.createTextNode("Title");
             node.appendChild(textnode);
             searchBy.appendChild(node);
-        
+            document.getElementById("results").disabled = true;
     }
 }
 
