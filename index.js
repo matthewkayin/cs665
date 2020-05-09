@@ -66,7 +66,7 @@ const fillTable = function(type, data){
             searchBy.appendChild(node);
         }
     }else if (type === "movies"){
-        
+
     }
         
 }
@@ -163,9 +163,12 @@ const sendSearch = function(){
     var url = "https://jsonplaceholder.typicode.com/posts";
     
     xhr.open("GET", url, true);
+    xhr.setRequestHeader("Content-Type", "application/json");
     xhr.responseType = "json";
     
-    xhr.send();
+    xhr.send(JSON.stringify({
+        //TODO: put values here from the query: searchFor, searchBy, searchText;
+    }));
 
     xhr.onreadystatechange = function(){
 
