@@ -113,7 +113,7 @@ const populateSearchBy = function(){
 
     switch (searchingFor){
         case "Books":{
-            document.getElementById("results").disabled = false;
+            document.getElementById("searchBy").disabled = false;
             for (let i = 0; i < bookAttributes.length; i++){
                 node = document.createElement("OPTION");
                 node.innerHTML = bookAttributes[i];
@@ -122,7 +122,7 @@ const populateSearchBy = function(){
             break;
         }
         case "Movie":{
-            document.getElementById("results").disabled = false;
+            document.getElementById("searchBy").disabled = false;
             for (let i = 0; i < movieAttributes.length; i++){
                 node = document.createElement("OPTION");
                 node.innerHTML = movieAttributes[i];
@@ -131,7 +131,7 @@ const populateSearchBy = function(){
             break;
         }
         case "Album":{
-            document.getElementById("results").disabled = false;
+            document.getElementById("searchBy").disabled = false;
             for (let i = 0; i < albumAttributes.length; i++){
                 node = document.createElement("OPTION");
                 node.innerHTML = albumAttributes[i];
@@ -140,7 +140,7 @@ const populateSearchBy = function(){
             break;
         }
         case "Card":{
-            document.getElementById("results").disabled = true;
+            document.getElementById("searchBy").disabled = true;
             for (let i = 0; i < cardAttributes.length; i++){
                 node = document.createElement("OPTION");
                 node.innerHTML = cardAttributes[i];
@@ -152,7 +152,7 @@ const populateSearchBy = function(){
             node = document.createElement("OPTION");
             node.innerHTML = "Title";
             searchBy.appendChild(node);
-            document.getElementById("results").disabled = false;
+            document.getElementById("searchBy").disabled = false;
     }
 }
 
