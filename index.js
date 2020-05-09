@@ -65,7 +65,9 @@ const fillTable = function(type, data){
             node.appendChild(textnode);
             searchBy.appendChild(node);
         }
-    }else if (type === "movies")
+    }else if (type === "movies"){
+        
+    }
         
 }
 
