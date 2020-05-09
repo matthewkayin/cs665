@@ -8,7 +8,23 @@
     <body>
         <div class="header">
             <h1 class="title">CS 665 Project</h1>
-            <h2 class="subtitle">Group 9? Matthew Drummond, Angel Lopez, and Matt Madden.</h2>
+            <h2 class="subtitle">Group 9 Matthew Drummond, Angel Lopez, and Matt Madden.</h2>
+        </div>
+        <h1>Search</h1>
+            <div class="search">
+                <select id="option1" name="selectItem" onchange="update()">
+                    <option value="Books">Books</option>
+                    <option value="Movie">Movie</option>
+                    <option value="Albulm">Albulm</option>
+                    <option value="All">All Three</option>
+                    <option value="Card">Library Card</option>
+                </select>
+                <select id="option2" name="selectGenre" onchange="update()">
+                </select>
+            </div>
+        <center><button onclick="">Results</button></center>
+        <div class="resultsbox">
+            <input type="text" id="results" placeholder="Results" onclick="">
         </div>
     </body>
 </html>
