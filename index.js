@@ -140,7 +140,7 @@ const populateSearchBy = function(){
             break;
         }
         case "Card":{
-            document.getElementById("results").disabled = false;
+            document.getElementById("results").disabled = true;
             for (let i = 0; i < cardAttributes.length; i++){
                 node = document.createElement("OPTION");
                 node.innerHTML = cardAttributes[i];
