@@ -29,20 +29,24 @@ h1{
 	text-align: center;
 }
 
+select{
+    margin: 10px;
+}
+
 .search{
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-
 #searchFor, #searchBy{
     width: 120px;
     height: 40px;
-    font-size: 16px;
+    font-size: 14px;
+    font-weight: bold;
     border-radius: 25px;
     border: 2px solid black;
-    padding: 10px;
+    padding: 5px;
 }
 
 input[type=text]
@@ -53,25 +57,11 @@ input[type=text]
     font-size: 16px;
     border-radius: 25px;
     border: 2px solid black;
-    padding: 10px;  
+    padding: 10px;
 }
 
 .searchBox{
     padding: 10px;
-    position: absolute;
-    top: 30%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%)
-}
-
-.results{
-    padding: 10px;
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%)
 }
 
 #books, #movies, #albums{
@@ -80,7 +70,7 @@ input[type=text]
     padding: 10px;
     font-size: 16px;
     background-color: white;
-    float: left;
+    margin: 0 auto;
 }
 
 caption{
