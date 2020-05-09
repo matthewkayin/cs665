@@ -21,7 +21,6 @@
 }
 
 body{
-    background-image: url("items.png");
     color: black;
 }
 
@@ -38,29 +37,54 @@ h1{
 
 
 #searchFor, #searchBy{
-    width: 200px;
-    height: 80px;
+    width: 120px;
+    height: 40px;
     font-size: 16px;
     border-radius: 25px;
-    border: 2px solid #73AD21;
-    padding: 20px;   
+    border: 2px solid black;
+    padding: 10px;
 }
 
 input[type=text]
 {
-    width: 400px;
-    height: 30px; 
+    width:240px;
+    height: 10px; 
     line-height: 15px;
     font-size: 16px;
     border-radius: 25px;
-    border: 2px solid #73AD21;
-    padding: 20px;  
+    border: 2px solid black;
+    padding: 10px;  
+}
+
+.searchBox{
+    padding: 10px;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}
+
+.results{
+    padding: 10px;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
 }
 
 #books, #movies, #albums{
     border-radius: 25px;
-    border: 2px solid #73AD21;
-    padding: 20px;
+    border: 2px solid black;
+    padding: 10px;
     font-size: 16px;
     background-color: white;
+    float: left;
+}
+
+caption{
+    font-weight: bold;
+    font-size: 30px;
+    padding: 10px;
 }
