@@ -141,6 +141,114 @@ app.post('/search', function(request, response){
             response.setHeader("Content-Type", "application/json");
             response.end(JSON.stringify(response_content));
         });
+
+    }else if(request.body.searchFor == "All"){
+
+        sqlserver.query("SELECT * FROM books WHERE books.title LIKE ?", ['%' + request.body.searchText + '%'], function(book_error, book_results){
+
+            if(book_error){
+
+                throw book_error;
+            }
+
+            response_content.book_count = book_results.length;
+            for(var i = 0; i < book_results.length; i++){
+
+                response_content.book_title.push(book_results[i].title); 
+                response_content.book_author.push(book_results[i].author);
+                response_content.book_isbn.push(book_results[i].isbn);
+            }
+
+            sqlserver.query("SELECT * FROM movies WHERE movies.title LIKE ?", ['%' + request.body.searchText + '%'], function(movie_error, movie_results){
+
+                if(movie_error){
+
+                    throw movie_error;
+                }
+
+                response_content.movie_count = movie_results.length;
+                for(var i = 0; i < movie_results.length; i++){
+
+                    response_content.movie_title.push(movie_results[i].title); 
+                    response_content.movie_year.push(movie_results[i].year);
+                    response_content.movie_star.push(movie_results[i].star);
+                    response_content.movie_genre.push(movie_results[i].genre);
+                }
+
+                sqlserver.query("SELECT title, artist, DATE_FORMAT(release_date, '%m/%d/%Y') AS date, genre FROM albums WHERE albums.title LIKE ?", ['%' + request.body.searchText + '%'], function(album_error, album_results){
+
+                    if(album_error){
+
+                        throw album_error;
+                    }
+
+                    response_content.album_count = album_results.length;
+                    for(var i = 0; i < album_results.length; i++){
+
+                        response_content.album_title.push(album_results[i].title); 
+                        response_content.album_artist.push(album_results[i].artist);
+                        response_content.album_release.push(album_results[i].date);
+                        response_content.album_genre.push(album_results[i].genre);
+                    }
+                    response.setHeader("Content-Type", "application/json");
+                    response.end(JSON.stringify(response_content));
+                });
+            });
+        });
+
+    }else if(request.body.searchFor == "Library"){
+
+        sqlserver.query("SELECT books.title AS title, books.author AS author, books.isbn AS isbn FROM books, customers WHERE customers.card_number LIKE ? AND customers.card_number = books.card_number", ['%' + request.body.searchText + '%'], function(book_error, book_results){
+
+            if(book_error){
+
+                throw book_error;
+            }
+
+            response_content.book_count = book_results.length;
+            for(var i = 0; i < book_results.length; i++){
+
+                response_content.book_title.push(book_results[i].title); 
+                response_content.book_author.push(book_results[i].author);
+                response_content.book_isbn.push(book_results[i].isbn);
+            }
+
+            sqlserver.query("SELECT movies.title AS title, movies.year AS year, movies.star AS star, movies.genre AS genre FROM movies, customers WHERE customers.card_number LIKE ? AND customers.card_number = movies.card_number", ['%' + request.body.searchText + '%'], function(movie_error, movie_results){
+
+                if(movie_error){
+
+                    throw movie_error;
+                }
+
+                response_content.movie_count = movie_results.length;
+                for(var i = 0; i < movie_results.length; i++){
+
+                    response_content.movie_title.push(movie_results[i].title); 
+                    response_content.movie_year.push(movie_results[i].year);
+                    response_content.movie_star.push(movie_results[i].star);
+                    response_content.movie_genre.push(movie_results[i].genre);
+                }
+
+                sqlserver.query("SELECT albums.title AS title, albums.artist AS artist, DATE_FORMAT(albums.date, '%m/%d/%Y') AS date, albums.genre AS genre FROM albums, customers WHERE customers.card_number LIKE ? AND customers.card_number = albums.card_number", ['%' + request.body.searchText + '%'], function(album_error, album_results){
+
+                    if(album_error){
+
+                        throw album_error;
+                    }
+
+                    response_content.album_count = album_results.length;
+                    for(var i = 0; i < album_results.length; i++){
+
+                        response_content.album_title.push(album_results[i].title); 
+                        response_content.album_artist.push(album_results[i].artist);
+                        response_content.album_release.push(album_results[i].date);
+                        response_content.album_genre.push(album_results[i].genre);
+                    }
+                    response.setHeader("Content-Type", "application/json");
+                    response.end(JSON.stringify(response_content));
+                });
+            });
+        });
     }
 });
 
