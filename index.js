@@ -83,7 +83,7 @@ const fillTables = function(data){
     
     
     //albums displayed like this: <Title> <Artist> <Release Date> <Genre>
-    for (let i = 0; i < data.albums_count; i++){
+    for (let i = 0; i < data.album_count; i++){
         //TODO: find out why the albums aren't displaying correctly
         
         newRow = document.createElement("TR");//create new row
@@ -243,7 +243,7 @@ var test = {
     album_count:3,
     album_title:["Fellowship of the Ring","The Two Towers","The Return of the King"],
     album_release:[2001,2002,2003],
-    album_count:["Howard Shore","Howard Shore","Howard Shore"],
+    album_artist:["Howard Shore","Howard Shore","Howard Shore"],
     album_genre:["soundtrack","soundtrack","soundtrack"]
 }
 
