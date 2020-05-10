@@ -200,18 +200,18 @@ const sendSearch = function(){
     // the /search is the url you're getting from, relative to the site
     
     
-    xhr.open("GET", "/search", true);
+    xhr.open("POST", "/search", true);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.responseType = "json";
     
     xhr.send(JSON.stringify({
         //TODO: put values here from the query: searchFor, searchBy, searchText
-        searchFor: "books",
+        /*searchFor: "books",
         searchBy: "title",
-        searchText: "Lord of the Rings"
-        /* searchFor : document.getElementById("searchFor").value,
+        searchText: "Lord of the Rings"*/
+        searchFor : document.getElementById("searchFor").value,
         searchBy : document.getElementById("searchBy").value,
-        searchText : document.getElementById("results").tex */
+        searchText : document.getElementById("results").value
     }));
 
     xhr.onreadystatechange = function(){
