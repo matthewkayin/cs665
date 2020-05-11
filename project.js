@@ -48,16 +48,19 @@ app.post('/search', function(request, response){
         book_title: [],
         book_author: [],
         book_isbn: [],
+        book_availability: [],
         movie_count: 0,
         movie_title: [],
         movie_year: [],
         movie_star: [],
         movie_genre: [],
+        movie_availability: [],
         album_count: 0,
         album_artist: [],
         album_title: [],
         album_release: [],
-        album_genre: []
+        album_genre: [],
+        album_availability: [],
     };
 
     if(request.body.searchFor == "Books"){
@@ -68,7 +71,7 @@ app.post('/search', function(request, response){
             "Author": "books.author",
             "ISBN": "books.isbn"
         };
-        sqlserver.query("SELECT * FROM books WHERE " + search_by_mapping[request.body.searchBy] + " LIKE ?", ['%' + request.body.searchText + '%'], function(error, results){
+        sqlserver.query("SELECT title, author, isbn, DATE_FORMAT(due_date, '%m/%d/%Y') AS due_date FROM books WHERE " + search_by_mapping[request.body.searchBy] + " LIKE ?", ['%' + request.body.searchText + '%'], function(error, results){
 
             if(error){
 
@@ -81,6 +84,14 @@ app.post('/search', function(request, response){
                 response_content.book_title.push(results[i].title); 
                 response_content.book_author.push(results[i].author);
                 response_content.book_isbn.push(results[i].isbn);
+                if(results[i].due_date == null){
+
+                    response_content.book_availability.push("Availabile");
+
+                }else{
+
+                    response_content.book_availability.push("Due " + results[i].due_date);
+                }
             }
             response.setHeader("Content-Type", "application/json");
             response.end(JSON.stringify(response_content));
@@ -95,7 +106,7 @@ app.post('/search', function(request, response){
             "Star": "movies.star",
             "Genre": "movies.genre"
         };
-        sqlserver.query("SELECT * FROM movies WHERE " + search_by_mapping[request.body.searchBy] + " LIKE ?", ['%' + request.body.searchText + '%'], function(error, results){
+        sqlserver.query("SELECT title, year, star, genre, DATE_FORMAT(due_date, '%m/%d/%Y') AS due_date FROM movies WHERE " + search_by_mapping[request.body.searchBy] + " LIKE ?", ['%' + request.body.searchText + '%'], function(error, results){
 
             if(error){
 
@@ -109,6 +120,14 @@ app.post('/search', function(request, response){
                 response_content.movie_year.push(results[i].year);
                 response_content.movie_star.push(results[i].star);
                 response_content.movie_genre.push(results[i].genre);
+                if(results[i].due_date == null){
+
+                    response_content.movie_availability.push("Available");
+
+                }else{
+
+                    response_content.movie_availability.push("Due " + results[i].due_date);
+                }
             }
             response.setHeader("Content-Type", "application/json");
             response.end(JSON.stringify(response_content));
@@ -123,7 +142,7 @@ app.post('/search', function(request, response){
             "Release Date": "albums.release_date",
             "Genre": "albums.genre"
         };
-        sqlserver.query("SELECT title, artist, DATE_FORMAT(release_date, '%m/%d/%Y') AS date, genre FROM albums WHERE " + search_by_mapping[request.body.searchBy] + " LIKE ?", ['%' + request.body.searchText + '%'], function(error, results){
+        sqlserver.query("SELECT title, artist, DATE_FORMAT(release_date, '%m/%d/%Y') AS date, genre, DATE_FORMAT(due_date, '%m/%d/%Y') AS due_date FROM albums WHERE " + search_by_mapping[request.body.searchBy] + " LIKE ?", ['%' + request.body.searchText + '%'], function(error, results){
 
             if(error){
 
@@ -137,6 +156,14 @@ app.post('/search', function(request, response){
                 response_content.album_artist.push(results[i].artist);
                 response_content.album_release.push(results[i].date);
                 response_content.album_genre.push(results[i].genre);
+                if(results[i].due_date == null){
+
+                    response_content.album_availability.push("Available");
+
+                }else{
+
+                    response_content.album_availability.push("Due " + results[i].due_date);
+                }
             }
             response.setHeader("Content-Type", "application/json");
             response.end(JSON.stringify(response_content));
@@ -144,7 +171,7 @@ app.post('/search', function(request, response){
 
     }else if(request.body.searchFor == "All"){
 
-        sqlserver.query("SELECT * FROM books WHERE books.title LIKE ?", ['%' + request.body.searchText + '%'], function(book_error, book_results){
+        sqlserver.query("SELECT title, author, isbn, DATE_FORMAT(due_date, '%m/%d/%Y') AS due_date FROM books WHERE books.title LIKE ?", ['%' + request.body.searchText + '%'], function(book_error, book_results){
 
             if(book_error){
 
@@ -157,9 +184,17 @@ app.post('/search', function(request, response){
                 response_content.book_title.push(book_results[i].title); 
                 response_content.book_author.push(book_results[i].author);
                 response_content.book_isbn.push(book_results[i].isbn);
+                if(book_results[i].due_date == null){
+
+                    response_content.book_availability.push("Available");
+
+                }else{
+
+                    response_content.book_availability.push("Due " + book_results[i].due_date);
+                }
             }
 
-            sqlserver.query("SELECT * FROM movies WHERE movies.title LIKE ?", ['%' + request.body.searchText + '%'], function(movie_error, movie_results){
+            sqlserver.query("SELECT title, year, star, genre, DATE_FORMAT(due_date, '%m/%d/%Y') AS due_date FROM movies WHERE movies.title LIKE ?", ['%' + request.body.searchText + '%'], function(movie_error, movie_results){
 
                 if(movie_error){
 
@@ -173,9 +208,17 @@ app.post('/search', function(request, response){
                     response_content.movie_year.push(movie_results[i].year);
                     response_content.movie_star.push(movie_results[i].star);
                     response_content.movie_genre.push(movie_results[i].genre);
+                    if(movie_results[i].due_date == null){
+
+                        response_content.movie_availability.push("Available");
+
+                    }else{
+
+                        response_content.movie_availability.push("Due " + movie_results[i].due_date);
+                    }
                 }
 
-                sqlserver.query("SELECT title, artist, DATE_FORMAT(release_date, '%m/%d/%Y') AS date, genre FROM albums WHERE albums.title LIKE ?", ['%' + request.body.searchText + '%'], function(album_error, album_results){
+                sqlserver.query("SELECT title, artist, DATE_FORMAT(release_date, '%m/%d/%Y') AS date, genre, DATE_FORMAT(due_date, '%m/%d/%Y') AS due_date FROM albums WHERE albums.title LIKE ?", ['%' + request.body.searchText + '%'], function(album_error, album_results){
 
                     if(album_error){
 
@@ -189,6 +232,14 @@ app.post('/search', function(request, response){
                         response_content.album_artist.push(album_results[i].artist);
                         response_content.album_release.push(album_results[i].date);
                         response_content.album_genre.push(album_results[i].genre);
+                        if(album_results[i].due_date == null){
+
+                            response_content.album_availability.push("Available");
+
+                        }else{
+
+                            response_content.album_availability.push("Due " + album_results[i].due_date);
+                        }
                     }
                     response.setHeader("Content-Type", "application/json");
                     response.end(JSON.stringify(response_content));
@@ -198,7 +249,7 @@ app.post('/search', function(request, response){
 
     }else if(request.body.searchFor == "Library"){
 
-        sqlserver.query("SELECT books.title AS title, books.author AS author, books.isbn AS isbn FROM books, customers WHERE customers.card_number LIKE ? AND customers.card_number = books.card_number", ['%' + request.body.searchText + '%'], function(book_error, book_results){
+        sqlserver.query("SELECT books.title AS title, books.author AS author, books.isbn AS isbn, DATE_FORMAT(books.due_date, '%m/%d/%Y') AS due_date FROM books, customers WHERE customers.card_number = ? AND customers.card_number = books.card_number", ['%' + request.body.searchText + '%'], function(book_error, book_results){
 
             if(book_error){
 
@@ -211,9 +262,10 @@ app.post('/search', function(request, response){
                 response_content.book_title.push(book_results[i].title); 
                 response_content.book_author.push(book_results[i].author);
                 response_content.book_isbn.push(book_results[i].isbn);
+                response_content.book_availability.push("Due " + book_results[i].due_date);
             }
 
-            sqlserver.query("SELECT movies.title AS title, movies.year AS year, movies.star AS star, movies.genre AS genre FROM movies, customers WHERE customers.card_number LIKE ? AND customers.card_number = movies.card_number", ['%' + request.body.searchText + '%'], function(movie_error, movie_results){
+            sqlserver.query("SELECT movies.title AS title, movies.year AS year, movies.star AS star, movies.genre AS genre, DATE_FORMAT(movies.due_date, '%m/%d/%Y') AS due_date FROM movies, customers WHERE customers.card_number = ? AND customers.card_number = movies.card_number", ['%' + request.body.searchText + '%'], function(movie_error, movie_results){
 
                 if(movie_error){
 
@@ -227,9 +279,10 @@ app.post('/search', function(request, response){
                     response_content.movie_year.push(movie_results[i].year);
                     response_content.movie_star.push(movie_results[i].star);
                     response_content.movie_genre.push(movie_results[i].genre);
+                    response_content.movie_availability.push("Due " + movie_results[i].due_date);
                 }
 
-                sqlserver.query("SELECT albums.title AS title, albums.artist AS artist, DATE_FORMAT(albums.date, '%m/%d/%Y') AS date, albums.genre AS genre FROM albums, customers WHERE customers.card_number LIKE ? AND customers.card_number = albums.card_number", ['%' + request.body.searchText + '%'], function(album_error, album_results){
+                sqlserver.query("SELECT albums.title AS title, albums.artist AS artist, DATE_FORMAT(albums.date, '%m/%d/%Y') AS date, albums.genre AS genre, DATE_FORMAT(albums.due_date, '%m/%d/%Y') AS due_date FROM albums, customers WHERE customers.card_number LIKE ? AND customers.card_number = albums.card_number", ['%' + request.body.searchText + '%'], function(album_error, album_results){
 
                     if(album_error){
 
@@ -243,6 +296,7 @@ app.post('/search', function(request, response){
                         response_content.album_artist.push(album_results[i].artist);
                         response_content.album_release.push(album_results[i].date);
                         response_content.album_genre.push(album_results[i].genre);
+                        response_content.album_availability.push(album_results[i].due_date);
                     }
                     response.setHeader("Content-Type", "application/json");
                     response.end(JSON.stringify(response_content));
