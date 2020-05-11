@@ -57,7 +57,7 @@ INSERT INTO customers (first_name, last_name, email, address)
 
 INSERT INTO books (isbn, title, author, due_date, card_number)
             VALUES ("0000000000", "Jane Eyre", "Charlotte Bronte", STR_TO_DATE("5/22/2020", "%m/%d/%Y"), 1),
-                   ("0000000001", "The Lord of the Rings", "JRR Tolkein", NULL, NULL),
+                   ("0000000001", "The Lord of the Rings", "JRR Tolkein", "2020-05-22", 2),
                    ("0000000002", "The Lies of Locke Lamora", "Scott Lynch", NULL, NULL),
                    ("0000000003", "Harry Potter and the Half Blood Prince", "JK Rowling", NULL, NULL),
                    ("0000000004", "Pride and Prejudice", "Jane Austen", NULL, NULL),
@@ -72,21 +72,21 @@ INSERT INTO movies (title, year, star, genre, due_date, card_number)
                    ("Her", 2013, "Joaquin Phoenix", "Romance/Sci-fi", NULL, NULL),
                    ("The Mask", 1994, "Jim Carrey", "Comedy/Superhero", NULL, NULL),
                    ("Eternal Sunshine of The Spotless Mind", 2004, "Jim Carrey", "Romance/Sci-fi", NULL, NULL),
-                   ("Oblivion", 2013, "Tom Cruise", "Sci-fi/Action", NULL, NULL),
-                   ("Edge of Tomorrow", 2014, "Tom Cruise", "Sci-fi/Action", NULL, NULL),
+                   ("Oblivion", 2013, "Tom Cruise", "Sci-fi/Action", "2020-05-22", 3),
+                   ("Edge of Tomorrow", 2014, "Tom Cruise", "Sci-fi/Action", "2020-05-22", 3),
                    ("Passengers", 2016, "Chris Pratt", "Sci-fi/Romance", NULL, NULL),
-                   ("Spider-Man 2", 2004, "Tobey Maquire", "Action/Adventure", NULL, NULL),
+                   ("Spider-Man 2", 2004, "Tobey Maquire", "Action/Adventure", "2020-5-10", 1),
                    ("Monty Python and The Holy Grail", 1975, "Graham Chapman", "Comedy/Fantasy",NULL, NULL),
                    ("Bruce Almighty", 2003, "Jim Carrey", "Comedy/Fantasy", NULL, NULL);
 
 INSERT INTO albums (title, artist, genre, release_date, due_date, card_number)
-            VALUES ("Petals for Armor", "Hayley Williams", "Pop", 2020-05-08, STR_TO_DATE("05/17/2020", "%m/%d/%Y"), 2), 
-                   ("Riot!", "Paramore", "Punk", 2007-06-12, NULL, NULL),
-                   ("Outsider", "Three Days Grace", "Rock", 2018-03-09, NULL, NULL),
-                   ("Surfer Girl", "The Beach Boys", "Surf Music", 1963-09-16, STR_TO_DATE("05/17/2020", "%m/%d/%Y"), 2),
-                   ("Sounds of Silence", "Simon & Garfunkel", "Folk Rock", 1966-01-17, NULL, NULL),
-                   ("Abbey Road", "The Beatles", "Rock and Roll", 1969-09-26, NULL, NULL),
-                   ("American IV: The Man Comes Around", "Johnny Cash", "Folk", 2002-11-05, NULL, NULL),
-                   ("California", "Blink-182", "Punk", 2016-07-01, NULL, NULL),
-                   ("Adapt", "Trace Bundy", "Acoustic", 2004-10-01, NULL, NULL),
-                   ("Californication", "Red Hot Chili Peppers", "Alternative", 1999-06-08, STR_TO_DATE("05/17/2020", "%m/%d/%Y"), 2);
+            VALUES ("Petals for Armor", "Hayley Williams", "Pop", "2020-05-08", STR_TO_DATE("05/17/2020", "%m/%d/%Y"), 2), 
+                   ("Riot!", "Paramore", "Punk", "2007-06-12", "2020-05-22", 1),
+                   ("Outsider", "Three Days Grace", "Rock", "2018-03-09", NULL, NULL),
+                   ("Surfer Girl", "The Beach Boys", "Surf Music", "1963-09-16", STR_TO_DATE("05/17/2020", "%m/%d/%Y"), 2),
+                   ("Sounds of Silence", "Simon & Garfunkel", "Folk Rock", "1966-01-17", NULL, NULL),
+                   ("Abbey Road", "The Beatles", "Rock and Roll", "1969-09-26", "2020-05-14", 1),
+                   ("American IV: The Man Comes Around", "Johnny Cash", "Folk", "2002-11-05", NULL, NULL),
+                   ("California", "Blink-182", "Punk", "2016-07-01", NULL, NULL),
+                   ("Adapt", "Trace Bundy", "Acoustic", "2004-10-01", NULL, NULL),
+                   ("Californication", "Red Hot Chili Peppers", "Alternative", "1999-06-08", STR_TO_DATE("05/17/2020", "%m/%d/%Y"), 2);
