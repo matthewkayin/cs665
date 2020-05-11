@@ -68,7 +68,16 @@ INSERT INTO books (isbn, title, author, due_date, card_number)
                    ("0000000009", "Dune", "Frank Herbert", NULL, NULL);
 
 INSERT INTO movies (title, year, star, genre, due_date, card_number)
-            VALUES ("Parasite", 2019, "Song Kang-ho", "Drama", NULL, NULL);
+            VALUES ("Parasite", 2019, "Song Kang-ho", "Drama", NULL, NULL),
+                   ("Her", 2013, "Joaquin Phoenix", "Romance/Sci-fi", NULL, NULL),
+                   ("The Mask", 1994, "Jim Carrey", "Comedy/Superhero", NULL, NULL),
+                   ("Eternal Sunshine of The Spotless Mind", 2004, "Jim Carrey", "Romance/Sci-fi", NULL, NULL),
+                   ("Oblivion", 2013, "Tom Cruise", "Sci-fi/Action", NULL, NULL),
+                   ("Edge of Tomorrow", 2014, "Tom Cruise", "Sci-fi/Action", NULL, NULL),
+                   ("Passengers", 2016, "Chris Pratt", "Sci-fi/Romance", NULL, NULL),
+                   ("Spider-Man 2", 2004, "Tobey Maquire", "Action/Adventure", NULL, NULL),
+                   ("Monty Python and The Holy Grail", 1975, "Graham Chapman", "Comedy/Fantasy",NULL, NULL),
+                   ("Bruce Almighty", 2003, "Jim Carrey", "Comedy/Fantasy", NULL, NULL);
 
 INSERT INTO albums (title, artist, genre, release_date, due_date, card_number)
             VALUES ("Petals for Armor", "Hayley Williams", "Pop", 2020-05-08, STR_TO_DATE("05/17/2020", "%m/%d/%Y"), 2), 
