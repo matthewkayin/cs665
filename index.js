@@ -53,7 +53,11 @@ const fillTables = function(data){
         newCell = document.createElement("TD");//create new cell
         newCell.innerHTML = data.book_isbn[i];
         newRow.appendChild(newCell);
-        
+
+        newCell = document.createElement("TD");//create new cell
+        newCell.innerHTML = data.book_availability[i];
+        newRow.appendChild(newCell);
+
         document.getElementById("books").appendChild(newRow);//add new row to table
     }
     
@@ -78,13 +82,17 @@ const fillTables = function(data){
         newCell = document.createElement("TD");//create new cell
         newCell.innerHTML = data.movie_genre[i];
         newRow.appendChild(newCell);
+
+        newCell = document.createElement("TD");//create new cell
+        newCell.innerHTML = data.movie_availability[i];
+        newRow.appendChild(newCell);
+
         document.getElementById("movies").appendChild(newRow);//add new row to table
     }
     
     
     //albums displayed like this: <Title> <Artist> <Release Date> <Genre>
     for (let i = 0; i < data.album_count; i++){
-        //TODO: find out why the albums aren't displaying correctly
         
         newRow = document.createElement("TR");//create new row
         newCell = document.createElement("TD");//create new cell
@@ -103,6 +111,10 @@ const fillTables = function(data){
 
         newCell = document.createElement("TD");//create new cell
         newCell.innerHTML = data.album_genre[i];
+        newRow.appendChild(newCell);
+
+        newCell = document.createElement("TD");//create new cell
+        newCell.innerHTML = data.album_availability[i];
         newRow.appendChild(newCell);
  
         document.getElementById("albums").appendChild(newRow);//add new row to table
@@ -235,15 +247,18 @@ var test = {
     book_title:["The Lord of the Rings"],
     book_author:["JRR Tolkien"],
     book_genre:["Fantasy"],
+    book_availability: ["Available"],
     movie_count:1,
     movie_title:["The Lord of the Rings"],
     movie_year:[2001],
     movie_star:["Ian McKellan"],
     movie_genre:["Fantasy"],
+    movie_availability:["Available"],
     album_count:3,
     album_title:["Fellowship of the Ring","The Two Towers","The Return of the King"],
     album_release:[2001,2002,2003],
     album_artist:["Howard Shore","Howard Shore","Howard Shore"],
-    album_genre:["soundtrack","soundtrack","soundtrack"]
+    album_genre:["soundtrack","soundtrack","soundtrack"],
+    album_availability:["Available", "Due 03/23/2020", "Due 05/27/2020"]
 }
 
