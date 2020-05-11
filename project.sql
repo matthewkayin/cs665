@@ -71,13 +71,13 @@ INSERT INTO movies (title, year, star, genre, due_date, card_number)
             VALUES ("Parasite", 2019, "Song Kang-ho", "Drama", NULL, NULL);
 
 INSERT INTO albums (title, artist, genre, release_date, due_date, card_number)
-            VALUES ("Petals for Armor", "Hayley Williams", "Pop", 2020-05-08, "Due 05/17/20", 2), 
+            VALUES ("Petals for Armor", "Hayley Williams", "Pop", 2020-05-08, STR_TO_DATE("05/17/2020", "%m/%d/%Y"), 2), 
                    ("Riot!", "Paramore", "Punk", 2007-06-12, NULL, NULL),
                    ("Outsider", "Three Days Grace", "Rock", 2018-03-09, NULL, NULL),
-                   ("Surfer Girl", "The Beach Boys", "Surf Music", 1963-09-16, "Due 05/17/20", 2),
+                   ("Surfer Girl", "The Beach Boys", "Surf Music", 1963-09-16, STR_TO_DATE("05/17/2020", "%m/%d/%Y"), 2),
                    ("Sounds of Silence", "Simon & Garfunkel", "Folk Rock", 1966-01-17, NULL, NULL),
                    ("Abbey Road", "The Beatles", "Rock and Roll", 1969-09-26, NULL, NULL),
                    ("American IV: The Man Comes Around", "Johnny Cash", "Folk", 2002-11-05, NULL, NULL),
                    ("California", "Blink-182", "Punk", 2016-07-01, NULL, NULL),
                    ("Adapt", "Trace Bundy", "Acoustic", 2004-10-01, NULL, NULL),
-                   ("Californication", "Red Hot Chili Peppers", "Alternative", 1999-06-08, "Due 05/17/20", 2);
+                   ("Californication", "Red Hot Chili Peppers", "Alternative", 1999-06-08, STR_TO_DATE("05/17/2020", "%m/%d/%Y"), 2);
