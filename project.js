@@ -247,9 +247,9 @@ app.post('/search', function(request, response){
             });
         });
 
-    }else if(request.body.searchFor == "Library"){
+    }else if(request.body.searchFor == "Card"){
 
-        sqlserver.query("SELECT books.title AS title, books.author AS author, books.isbn AS isbn, DATE_FORMAT(books.due_date, '%m/%d/%Y') AS due_date FROM books, customers WHERE customers.card_number = ? AND customers.card_number = books.card_number", ['%' + request.body.searchText + '%'], function(book_error, book_results){
+        sqlserver.query("SELECT books.title AS title, books.author AS author, books.isbn AS isbn, DATE_FORMAT(books.due_date, '%m/%d/%Y') AS due_date FROM books, customers WHERE customers.card_number = ? AND customers.card_number = books.card_number", [request.body.searchText], function(book_error, book_results){
 
             if(book_error){
 
@@ -265,7 +265,7 @@ app.post('/search', function(request, response){
                 response_content.book_availability.push("Due " + book_results[i].due_date);
             }
 
-            sqlserver.query("SELECT movies.title AS title, movies.year AS year, movies.star AS star, movies.genre AS genre, DATE_FORMAT(movies.due_date, '%m/%d/%Y') AS due_date FROM movies, customers WHERE customers.card_number = ? AND customers.card_number = movies.card_number", ['%' + request.body.searchText + '%'], function(movie_error, movie_results){
+            sqlserver.query("SELECT movies.title AS title, movies.year AS year, movies.star AS star, movies.genre AS genre, DATE_FORMAT(movies.due_date, '%m/%d/%Y') AS due_date FROM movies, customers WHERE customers.card_number = ? AND customers.card_number = movies.card_number", [request.body.searchText], function(movie_error, movie_results){
 
                 if(movie_error){
 
@@ -282,7 +282,7 @@ app.post('/search', function(request, response){
                     response_content.movie_availability.push("Due " + movie_results[i].due_date);
                 }
 
-                sqlserver.query("SELECT albums.title AS title, albums.artist AS artist, DATE_FORMAT(albums.date, '%m/%d/%Y') AS date, albums.genre AS genre, DATE_FORMAT(albums.due_date, '%m/%d/%Y') AS due_date FROM albums, customers WHERE customers.card_number LIKE ? AND customers.card_number = albums.card_number", ['%' + request.body.searchText + '%'], function(album_error, album_results){
+                sqlserver.query("SELECT albums.title AS title, albums.artist AS artist, DATE_FORMAT(albums.release_date, '%m/%d/%Y') AS date, albums.genre AS genre, DATE_FORMAT(albums.due_date, '%m/%d/%Y') AS due_date FROM albums, customers WHERE customers.card_number LIKE ? AND customers.card_number = albums.card_number", [request.body.searchText], function(album_error, album_results){
 
                     if(album_error){
 
