@@ -1,16 +1,5 @@
 //5/9/2020
 
-const changeElem = function(id){
-    //get value
-    var query = document.getElementById("results").value;
-    
-    //send query to SQL server
-    //sendSearch(query);
-
-    //output search values
-    document.getElementById(id).innerHTML = query;
-    
-}
 
 const clearTables = function(){
     //clear all tables except for headings
@@ -211,13 +200,16 @@ const sendSearch = function(){
     var xhr = new XMLHttpRequest();
     // the /search is the url you're getting from, relative to the site
     
-    
-    xhr.open("POST", "/search", true);
+    if (document.getElementById("results").value === ""){
+        clearTables();
+        return;
+    }
+
+    xhr.open("POST", "HTTP://localhost:8080/search", true);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.responseType = "json";
     
     xhr.send(JSON.stringify({
-        //TODO: put values here from the query: searchFor, searchBy, searchText
         /*searchFor: "books",
         searchBy: "title",
         searchText: "Lord of the Rings"*/
@@ -233,9 +225,14 @@ const sendSearch = function(){
             //deal with the data according to what was searched for
             var searchingFor = document.getElementById("searchFor").value;
             var json = xhr.response;
+            try{
 
-            fillTables(json);
-            console.log(json);
+                fillTables(json);
+            }
+            catch(e){
+                console.log(e);
+
+            }
         }
     };
 }
